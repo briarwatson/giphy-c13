@@ -6,10 +6,10 @@ const LoginPage = () => {
     const [inputUsername, setInputUsername] = useState("");
     // This runs our hook that uses the user context
     // and pulls out the setUsername function so that we can use it in this file.
-    const { setUsername } = useUserContext();
+    const { setUser } = useUserContext();
 
     const handleLogin = () => {
-        setUsername(inputUsername);
+        setUser(inputUsername);
     }
 
     return (
