@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import FavoritesPage from './pages/FavoritesPage';
-import LoginPage from './pages/LoginPage';
-import SearchPage from './pages/SearchPage';
+import { FavoritesPageWithAuth, LoginPageWithAuth, SearchPageWithAuth } from './functions/ProtectedRoutes';
 
 const App = () => {
   return (
@@ -23,10 +21,10 @@ const App = () => {
         </nav>
 
         <Routes>
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route exact path="/" element={<LoginPage />} /> 
+          <Route path="/favorites" element={<FavoritesPageWithAuth />} />
+          <Route path="/login" element={<LoginPageWithAuth />} />
+          <Route path="/search" element={<SearchPageWithAuth />} />
+          <Route exact path="/" element={<LoginPageWithAuth />} /> 
         </Routes>
       </div>
     </Router>
