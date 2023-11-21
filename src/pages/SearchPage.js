@@ -13,6 +13,11 @@ const SearchPage = () => {
 
     useEffect(() => {
         setGifs(data);
+        // If there is data from the API, AND data has another data object inside it,
+        // that means we successfully got gifs, and we can put them in the gifs state
+        if (data && data.data) {
+            setGifs(data.data);
+        }
     }, [data]);
 
     return (
@@ -24,7 +29,13 @@ const SearchPage = () => {
                 placeholder='Search for gifs'
             />
             <button onClick={searchClick}>Search</button>
-        </div>
+            {/* If the gifs are an array, we can display each title and the image url. Otherwise, display nothing. */}
+            {Array.isArray(gifs) ? gifs.map((gif) => (
+                <div>
+                    <img src={gif.images.original.url} />
+                </div>
+            )) : <p></p>}
+            </div>
     )
 }
 
