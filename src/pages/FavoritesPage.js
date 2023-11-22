@@ -8,7 +8,11 @@ const FavoritesPage = () => {
     return (
         <div>
             <h1>{username}'s Favorites</h1>
-            <h2>{favorites}</h2>
+            {favorites.map((gif) => (
+                <div>
+                    <img src={gif} />
+                </div>
+            ))}
         </div>
     )
 }

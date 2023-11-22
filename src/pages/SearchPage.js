@@ -7,7 +7,7 @@ const SearchPage = () => {
     const [inputValue, setInputValue] = useState("");
     const [gifs, setGifs] = useState(null);
     const { data, loading, error } = useAPI(searchTerm);
-    const { favorites, addFavorite } = useFavoritesContext();
+    const { addFavorite } = useFavoritesContext();
 
     const searchClick = () => {
         setSearchTerm(inputValue);
@@ -34,7 +34,7 @@ const SearchPage = () => {
             {/* If the gifs are an array, we can display each title and the image url. Otherwise, display nothing. */}
             {Array.isArray(gifs) ? gifs.map((gif) => (
                 <div>
-                    <button onClick={addFavorite(gif)}>Add Favorite</button>
+                    <button onClick={() => addFavorite(gif.images.original.url)}>Add Favorite</button>
                     <img src={gif.images.original.url} />
                 </div>
             )) : <p></p>}
