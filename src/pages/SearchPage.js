@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import useAPI from '../functions/useAPI';
+import { useFavoritesContext } from '../context/FavoritesContext';
 
 const SearchPage = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [gifs, setGifs] = useState(null);
     const { data, loading, error } = useAPI(searchTerm);
+    const { favorites, addFavorite } = useFavoritesContext();
 
     const searchClick = () => {
         setSearchTerm(inputValue);
@@ -32,11 +34,16 @@ const SearchPage = () => {
             {/* If the gifs are an array, we can display each title and the image url. Otherwise, display nothing. */}
             {Array.isArray(gifs) ? gifs.map((gif) => (
                 <div>
+                    <button onClick={addFavorite(gif)}>Add Favorite</button>
                     <img src={gif.images.original.url} />
                 </div>
             )) : <p></p>}
             </div>
     )
 }
+
+
+
+
 
 export default SearchPage;
